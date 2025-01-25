@@ -1,13 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const controllerPost= require("../controllers/controllers")
+
 //INDEX
-router.get('/bacheca', (req, res) => {
-    res.send("server del blog ")
-})
+router.get('/bacheca', controllerPost.index)
 //SHOW
-router.get('/:id', (req, res) => {
-    res.send(` dettagli sul post ${req.params.id} `)
-})
+router.get('/:id', controllerPost.show)
 //CREATE
 router.post('/', (req, res) => {
     res.send('crezione post del blog ')
@@ -21,8 +19,6 @@ router.patch('/:id', (req, res) => {
     res.send(`modifica parziale sul post ${req.params.id} `)
 })
 //DELETE
-router.delete('/:id', (req, res) => {
-    res.send(`eliminazione del post ${req.params.id} `)
-})
+router.delete('/:id', controllerPost.destroy)
 
 module.exports=router
