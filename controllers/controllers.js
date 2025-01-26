@@ -14,7 +14,22 @@ const show = (req, res) => {
     const post= postData.find((post) => post.id === id)
     res.json(post)
 }
+//CREATE
+const store=(req, res) => {
+    console.log(req.body)
+    const newId= postData[postData.length -1].id +1
+    const newPost= {
+        id: newId,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags 
+    }
+    postData.push(newPost)
+    
 
+    res.sendStatus(201)
+}
 
 //DELETE
 const destroy=(req,res)=>{
@@ -32,5 +47,6 @@ const destroy=(req,res)=>{
 module.exports= { 
     index,
     show,
-    destroy
+    destroy, 
+    store,
 };
