@@ -30,11 +30,29 @@ const store=(req, res) => {
 
     res.sendStatus(201)
 }
+//UPDATE
+const update=(req,res)=>{
+    const id = parseInt(req.params.id)
+    const post= postData.find((post) => post.id == id)
+   
+    post.id = req.body.id;
+    post.title = req.body.title;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags= req.body.tags
+    console.log(postData)
+    res.json(post)
+}
 
 //DELETE
 const destroy=(req,res)=>{
     const id= Number(req.params.id)
     const indexPost= postData.findIndex((post)=> post.id === id)
+    if(!indexPost){
+        return res.send(404).json({
+            error: "Post is not found:( "
+        })
+    }
     postData.splice(indexPost, 1)
     res.sendStatus(204)
 }
@@ -49,4 +67,5 @@ module.exports= {
     show,
     destroy, 
     store,
+    update
 };

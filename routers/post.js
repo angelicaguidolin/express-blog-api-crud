@@ -9,9 +9,7 @@ router.get('/:id', controllerPost.show)
 //CREATE
 router.post('/', controllerPost.store)
 //UPDATE
-router.put('/:id', (req, res) => {
-    res.send(` modifica integrale sul post ${req.params.id} `)
-})
+router.put('/:id',controllerPost.update)
 //MODIFY
 router.patch('/:id', (req, res) => {
     res.send(`modifica parziale sul post ${req.params.id} `)
